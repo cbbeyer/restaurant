@@ -6,20 +6,24 @@ from stack_api import Stack
 from queue_api import Queue
 
 
-ll = LinkedList()
-ll.add('a')
-ll.add('b')
-ll.add('c')
-try:
-    ll.get(5)
-except Exception as e:
-    print('Error: {}'.format(e))
+# ll = LinkedList()
+# ll.add('a')
+# ll.add('b')
+# ll.add('c')
+# try:
+#     ll.get(5)
+# except Exception as e:
+#     print('Error: {}'.format(e))
+#
+cl = CircularLinkedList()
 
+cl.add('a')
+cl.add('b')
+cl.add('c')
 
+test = cl._get_node(2).next
 
-
-ll.debug_print()
-
+print(test)
 
 
 

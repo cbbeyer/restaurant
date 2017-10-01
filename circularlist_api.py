@@ -8,20 +8,25 @@ class CircularLinkedList(object):
     def __init__(self):
         '''Creates a linked list.'''
         self.head = None
+        # self.tail = None
         self.size = 0
 
+# ----------------------------- needs to be changed
     def debug_print(self):
         '''Prints a representation of the entire list.'''
         values = []
         n = self.head
+        # while n != self.tail ????
         while n != None:
             values.append(str(n.value))
             n = n.next
         print('{} >>> {}'.format(self.size, ', '.join(values)))
 
+
+# ----------------------------- needs to be changed
     def debug_cycle(self, count):
         '''Prints a representation of the entire cycled list up to count items'''
-
+        # front to back count times, or back to front count times
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
@@ -31,21 +36,24 @@ class CircularLinkedList(object):
                 n = n.next
             return n
         else:
-            # RAISE ERROR
             raise IndexError('Error: {} is not within the bounds of the current linked list.'.format(index))
-
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
         # if statement for first added node to linked list
         if self.head is not None:
-            last_node = self._get_node(self.size-1)
+            last_node= self._get_node(self.size-1)
+            # add self.tail?
             last_node.next = Node(item)
+            last_node.next.next = self.head
             self.size += 1
         else:
             self.head = Node(item)
+            # add self.tail
+            self.head.next = self.head
             self.size += 1
 
+# ----------------------------- needs to be changed
     def insert(self, index, item):
         '''Inserts an item at the given index, shifting remaining items right.'''
         if self._get_node(index):
@@ -76,7 +84,7 @@ class CircularLinkedList(object):
             n = self._get_node(index)
             print(n.value)
 
-
+# ----------------------------- needs to be changed
     def delete(self, index):
         '''Deletes the item at the given index. Throws an exception if the index is not within the bounds of the linked list.'''
         if self._get_node(index):
@@ -88,7 +96,7 @@ class CircularLinkedList(object):
 
             self.size -= 1
 
-
+# ----------------------------- needs to be changed
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
         # find each item
