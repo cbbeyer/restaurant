@@ -24,9 +24,21 @@ cl.add('c')
 test = cl._get_node(2).next
 
 print(test)
+try:
+    cl.insert(5, 'd')
+except Exception as e:
+    print('Error: {}'.format(e))
 
+# cl.get(3)
+# test = cl._get_node(3).next
 
-
+cl.debug_print()
+cl.delete(2)
+cl.debug_print()
+cl.delete(1)
+cl.debug_print()
+cl.delete(0)
+cl.debug_print()
 
 
 

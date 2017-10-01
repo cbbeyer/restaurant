@@ -29,7 +29,7 @@ class LinkedList(object):
             return n
         else:
             # RAISE ERROR
-            raise IndexError('Error: {} is not within the bounds of the current linked list.'.format(index))
+            raise IndexError('{} is not within the bounds of the current linked list.'.format(index))
 
 
     def add(self, item):

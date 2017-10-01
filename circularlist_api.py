@@ -8,18 +8,18 @@ class CircularLinkedList(object):
     def __init__(self):
         '''Creates a linked list.'''
         self.head = None
-        # self.tail = None
         self.size = 0
 
-# ----------------------------- needs to be changed
     def debug_print(self):
         '''Prints a representation of the entire list.'''
         values = []
         n = self.head
-        # while n != self.tail ????
-        while n != None:
+        i = 0
+
+        while i < self.size:
             values.append(str(n.value))
             n = n.next
+            i += 1
         print('{} >>> {}'.format(self.size, ', '.join(values)))
 
 
@@ -36,24 +36,21 @@ class CircularLinkedList(object):
                 n = n.next
             return n
         else:
-            raise IndexError('Error: {} is not within the bounds of the current linked list.'.format(index))
+            raise IndexError('{} is not within the bounds of the current linked list.'.format(index))
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
         # if statement for first added node to linked list
         if self.head is not None:
             last_node= self._get_node(self.size-1)
-            # add self.tail?
             last_node.next = Node(item)
             last_node.next.next = self.head
             self.size += 1
         else:
             self.head = Node(item)
-            # add self.tail
             self.head.next = self.head
             self.size += 1
 
-# ----------------------------- needs to be changed
     def insert(self, index, item):
         '''Inserts an item at the given index, shifting remaining items right.'''
         if self._get_node(index):
@@ -61,6 +58,7 @@ class CircularLinkedList(object):
                 temp_val = self.head
                 self.head = Node(item)
                 self.head.next = temp_val
+                self.head.next.next = self.head
                 self.size += 1
 
             else:
@@ -84,15 +82,20 @@ class CircularLinkedList(object):
             n = self._get_node(index)
             print(n.value)
 
-# ----------------------------- needs to be changed
     def delete(self, index):
         '''Deletes the item at the given index. Throws an exception if the index is not within the bounds of the linked list.'''
         if self._get_node(index):
             if index is not 0:
                 prev_val = self._get_node(index-1)
-                prev_val.next = self._get_node(index+1)
+                if index == (self.size-1):
+                    prev_val.next = self.head
+                else:
+                    prev_val.next = self._get_node(index+1)
             else:
-                self.head = self._get_node(index+1)
+                if self.size == 1:
+                    self.head = None
+                else:
+                    self.head = self._get_node(index+1)
 
             self.size -= 1
 
