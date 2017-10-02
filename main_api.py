@@ -15,30 +15,43 @@ from queue_api import Queue
 # except Exception as e:
 #     print('Error: {}'.format(e))
 #
-cl = CircularLinkedList()
-
-cl.add('a')
-cl.add('b')
-cl.add('c')
-
-test = cl._get_node(2).next
-
-print(test)
-try:
-    cl.insert(5, 'd')
-except Exception as e:
-    print('Error: {}'.format(e))
+# cl = CircularLinkedList()
+#
+# cl.add('a')
+# cl.add('b')
+# cl.add('c')
+#
+# test = cl._get_node(2).next
+#
+# print(test)
+# try:
+#     cl.insert(5, 'd')
+# except Exception as e:
+#     print('Error: {}'.format(e))
 
 # cl.get(3)
 # test = cl._get_node(3).next
 
-cl.debug_print()
-cl.delete(2)
-cl.debug_print()
-cl.delete(1)
-cl.debug_print()
-cl.delete(0)
-cl.debug_print()
+# cl.swap(1,2)
+#
+# cl.debug_print()
+
+dl = DoublyLinkedList()
+
+dl.add('a')
+dl.add('b')
+dl.add('c')
+
+dl.insert(2, 'h')
+
+print(dl._get_node(3).prev)
+dl.debug_print()
+
+dl.delete(1)
+
+print(dl._get_node(2).prev)
+dl.debug_print()
+
 
 
 

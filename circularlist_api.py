@@ -28,6 +28,8 @@ class CircularLinkedList(object):
         '''Prints a representation of the entire cycled list up to count items'''
         # front to back count times, or back to front count times
 
+# -----------------------------
+
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
         if 0 <= index < self.size:
@@ -96,10 +98,8 @@ class CircularLinkedList(object):
                     self.head = None
                 else:
                     self.head = self._get_node(index+1)
-
             self.size -= 1
 
-# ----------------------------- needs to be changed
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
         # find each item
@@ -128,9 +128,15 @@ class Node(object):
 ######################################################
 ###   An iterator for the circular list
 
+
+# NEED TO DO SOMETHING WITH ITERATOR - ASK ABOUT THIS IN CLASS
+
 class CircularLinkedListIterator(object):
     def __init__(self, circular_list):
         '''Starts the iterator on the given circular list.'''
+        # if circular_list.head is not None:
+
+
 
     def has_next(self):
         '''Returns whether there is another value in the list.'''

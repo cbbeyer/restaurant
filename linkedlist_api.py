@@ -21,7 +21,6 @@ class LinkedList(object):
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
-
         if 0 <= index < self.size:
             n = self.head
             for i in range(index):
@@ -59,7 +58,6 @@ class LinkedList(object):
                 prev_val.next = Node(item)
                 prev_val.next.next = follow_val
                 self.size += 1
-
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
