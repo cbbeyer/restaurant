@@ -79,7 +79,10 @@ class LinkedList(object):
         if self._get_node(index):
             if index is not 0:
                 prev_val = self._get_node(index-1)
-                prev_val.next = self._get_node(index+1)
+                if index is not (self.size-1):
+                    prev_val.next = self._get_node(index+1)
+                else:
+                    prev_val.next = None
             else:
                 self.head = self._get_node(index+1)
 

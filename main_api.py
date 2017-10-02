@@ -18,6 +18,7 @@ from queue_api import Queue
 # cl = CircularLinkedList()
 #
 # cl.add('a')
+
 # cl.add('b')
 # cl.add('c')
 #
@@ -36,25 +37,46 @@ from queue_api import Queue
 #
 # cl.debug_print()
 
-dl = DoublyLinkedList()
+# dl = DoublyLinkedList()
+#
+# dl.add('a')
+# dl.add('b')
+# dl.add('c')
+#
+# dl.insert(2, 'h')
+#
+# print(dl._get_node(3).prev)
+# dl.debug_print()
+#
+# dl.delete(1)
+#
+# print(dl._get_node(2).prev)
+# dl.debug_print()
 
-dl.add('a')
-dl.add('b')
-dl.add('c')
+# st = Stack()
+#
+# st.push('a')
+# st.debug_print()
+# st.push('b')
+# st.debug_print()
+# st.push('c')
+# st.debug_print()
+#
+# st.pop()
+# st.debug_print()
 
-dl.insert(2, 'h')
+q = Queue()
 
-print(dl._get_node(3).prev)
-dl.debug_print()
+q.enqueue('a')
+q.enqueue('b')
+q.enqueue('c')
+q.dequeue()
+q.debug_print()
+q.dequeue()
+q.debug_print()
+q.dequeue()
 
-dl.delete(1)
-
-print(dl._get_node(2).prev)
-dl.debug_print()
-
-
-
-
+q.debug_print()
 
 # class Processor(object):
 #

@@ -11,6 +11,7 @@ class Stack(LinkedList):
 
     def push(self, item):
         '''Pushes an item onto the stack'''
+        self.add(item)
 
 
     def pop(self):
@@ -20,3 +21,7 @@ class Stack(LinkedList):
             2. Delete the node from the list.
             3. Return the value of the node.
         '''
+        last_node = self._get_node(self.size-1)
+        self.delete(self.size-1)
+        print(last_node)
+        return last_node

@@ -11,15 +11,15 @@ class Queue(object):
 
     def __init__(self):
         '''Constructor'''
-
+        self.linked_list = LinkedList()
 
     def debug_print(self):
         '''Prints a representation of the entire queue.'''
-
+        self.linked_list.debug_print()
 
     def enqueue(self, item):
         '''Adds an item to the end of the queue'''
-
+        self.linked_list.add(item)
 
     def dequeue(self):
         '''
@@ -28,6 +28,12 @@ class Queue(object):
             2. Delete the node from the list.
             3. Return the value of the node.
         '''
+        first_node = self.linked_list.head
+        self.linked_list.head = self.linked_list.head.next
+        self.linked_list.size -= 1
+        print(first_node)
+        return first_node
 
     def size(self):
         '''Returns the number of items in the queue'''
+        print(self.linked_list.size)

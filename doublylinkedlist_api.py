@@ -19,7 +19,14 @@ class DoublyLinkedList(object):
         while n != None:
             values.append(str(n.value))
             n = n.next
-        print('{} >>> {}'.format(self.size, ', '.join(values)))
+
+        backwards = []
+        last_node = self._get_node(self.size-1)
+        while last_node != None:
+            backwards.append(str(last_node.value))
+            last_node = last_node.prev
+
+        print('{} >>> {} >>> {}'.format(self.size, ', '.join(values), ', '.join(backwards)))
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
