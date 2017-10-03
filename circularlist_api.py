@@ -38,7 +38,7 @@ class CircularLinkedList(object):
                 n = n.next
             return n
         else:
-            raise IndexError('{} is not within the bounds of the current linked list.'.format(index))
+            raise IndexError('The given index is not within the bounds of the current list.'))
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
@@ -134,12 +134,14 @@ class Node(object):
 class CircularLinkedListIterator(object):
     def __init__(self, circular_list):
         '''Starts the iterator on the given circular list.'''
-        # if circular_list.head is not None:
-
-
+        self.cl = circular_list
+        self.index = 0
 
     def has_next(self):
         '''Returns whether there is another value in the list.'''
+        return self.index < len(self.cl)
 
     def next(self):
         '''Returns the next value, and increments the iterator by one value.'''
+        self.index += 1
+        

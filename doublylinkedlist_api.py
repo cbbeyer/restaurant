@@ -20,13 +20,30 @@ class DoublyLinkedList(object):
             values.append(str(n.value))
             n = n.next
 
+        backwards = self.backwards_print()
+
+        print('{} >>> {} >>> {}'.format(self.size, ', '.join(values), ', '.join(backwards)))
+
+    def backwards_print(self):
+        '''Prints list backwards'''
         backwards = []
-        last_node = self._get_node(self.size-1)
+        if self.size >= 1:
+            last_node = self._get_node(self.size-1)
+        else:
+            last_node = None
+
+        # counter = 0
+        # if restrict:
+        #     while last_node != None or counter < 3:
+        #         backwards.append(str(last_node.value))
+        #         last_node = last_node.prev
+        #         counter += 1
+        # else:
         while last_node != None:
             backwards.append(str(last_node.value))
             last_node = last_node.prev
 
-        print('{} >>> {} >>> {}'.format(self.size, ', '.join(values), ', '.join(backwards)))
+        return backwards
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
@@ -37,7 +54,8 @@ class DoublyLinkedList(object):
             return n
         else:
             # RAISE ERROR
-            raise IndexError('{} is not within the bounds of the current linked list.'.format(index))
+            # raise IndexError('{} is not within the bounds of the current linked list.'.format(index))
+            raise IndexError('The given index is not within the bounds of the current list.')
 
 
     def add(self, item):
@@ -90,10 +108,16 @@ class DoublyLinkedList(object):
         if self._get_node(index):
             if index is not 0:
                 prev_val = self._get_node(index-1)
-                prev_val.next = self._get_node(index+1)
-                prev_val.next.prev = prev_val
+                if (self.size - 1) != index:
+                    prev_val.next = self._get_node(index+1)
+                    prev_val.next.prev = prev_val
+                else:
+                    prev_val.next = None
+
+
             else:
                 self.head = self._get_node(index+1)
+                self.head.prev = None
 
             self.size -= 1
 
@@ -105,6 +129,25 @@ class DoublyLinkedList(object):
         node2 = self._get_node(index2)
         # swap the items
         node1.value, node2.value = node2.value, node1.value
+
+    def check_value(self, value):
+        '''Checks to see if a value is in a given list'''
+        # something wrong with self.head??
+        n = self.head
+        while n != None:
+            if n.value == value:
+                return True
+            n = n.next
+
+    def get_index(self, value):
+        '''Returns the index for a value'''
+        n = self.head
+        counter = 0
+        while n != None:
+            if n.value == value:
+                return counter
+            n = n.next
+            counter += 1
 
 
 ######################################################

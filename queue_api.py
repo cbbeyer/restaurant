@@ -28,11 +28,13 @@ class Queue(object):
             2. Delete the node from the list.
             3. Return the value of the node.
         '''
-        first_node = self.linked_list.head
-        self.linked_list.head = self.linked_list.head.next
-        self.linked_list.size -= 1
-        print(first_node)
-        return first_node
+        if self.linked_list.head is not None:
+            first_node = self.linked_list.head
+            self.linked_list.head = self.linked_list.head.next
+            self.linked_list.size -= 1
+            return first_node
+        else:
+            raise IndexError('The given index is not within the bounds of the current list.')
 
     def size(self):
         '''Returns the number of items in the queue'''

@@ -27,8 +27,7 @@ class LinkedList(object):
                 n = n.next
             return n
         else:
-            # RAISE ERROR
-            raise IndexError('{} is not within the bounds of the current linked list.'.format(index))
+            raise IndexError('The given index is not within the bounds of the current list.')
 
 
     def add(self, item):
@@ -84,9 +83,11 @@ class LinkedList(object):
                 else:
                     prev_val.next = None
             else:
-                self.head = self._get_node(index+1)
-
-            self.size -= 1
+                if self.size < 1:
+                    self.head = self._get_node(index+1)
+                else:
+                    self.head = None
+        self.size -= 1
 
 
     def swap(self, index1, index2):

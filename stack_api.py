@@ -23,5 +23,4 @@ class Stack(LinkedList):
         '''
         last_node = self._get_node(self.size-1)
         self.delete(self.size-1)
-        print(last_node)
         return last_node
