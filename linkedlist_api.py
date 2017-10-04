@@ -83,7 +83,7 @@ class LinkedList(object):
                 else:
                     prev_val.next = None
             else:
-                if self.size < 1:
+                if self.size > 1:
                     self.head = self._get_node(index+1)
                 else:
                     self.head = None

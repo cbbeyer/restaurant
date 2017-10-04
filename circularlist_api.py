@@ -22,13 +22,47 @@ class CircularLinkedList(object):
             i += 1
         print('{} >>> {}'.format(self.size, ', '.join(values)))
 
+    def reverse_list(self):
+        '''Reverses and returns a given circular list'''
+        reverse_list = CircularLinkedList()
+        i = 0
+        n = self.head
 
-# ----------------------------- needs to be changed
+        while i < self.size:
+            if i == 0:
+                reverse_list.add(n.value)
+            else:
+                reverse_list.insert(0, n.value)
+            n = n.next
+            i += 1
+
+        return reverse_list
+
     def debug_cycle(self, count):
         '''Prints a representation of the entire cycled list up to count items'''
         # front to back count times, or back to front count times
+        abs_count = abs(count)
+        values = []
+        i = 0
 
-# -----------------------------
+        if count > 0:
+            n = self.head
+            for t in range(abs_count):
+                while i < self.size:
+                    values.append(str(n.value))
+                    n = n.next
+                    i += 1
+                print('{} >>> {}'.format(self.size, ', '.join(values)))
+        else:
+            rev_list = self.reverse_list()
+            n = rev_list.head
+            for t in range(abs_count):
+                while i < self.size:
+                    values.append(str(n.value))
+                    n = n.next
+                    i += 1
+                print('{} >>> {}'.format(self.size, ', '.join(values)))
+
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
@@ -38,7 +72,7 @@ class CircularLinkedList(object):
                 n = n.next
             return n
         else:
-            raise IndexError('The given index is not within the bounds of the current list.'))
+            raise IndexError('The given index is not within the bounds of the current list.')
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
@@ -59,8 +93,11 @@ class CircularLinkedList(object):
             if index == 0:
                 temp_val = self.head
                 self.head = Node(item)
-                self.head.next = temp_val
-                self.head.next.next = self.head
+                if self.size > 0:
+                    self.head.next = temp_val
+                    # self.head.next.next = self.head
+                else:
+                    self.head = temp_val
                 self.size += 1
 
             else:
@@ -128,9 +165,6 @@ class Node(object):
 ######################################################
 ###   An iterator for the circular list
 
-
-# NEED TO DO SOMETHING WITH ITERATOR - ASK ABOUT THIS IN CLASS
-
 class CircularLinkedListIterator(object):
     def __init__(self, circular_list):
         '''Starts the iterator on the given circular list.'''
@@ -139,9 +173,21 @@ class CircularLinkedListIterator(object):
 
     def has_next(self):
         '''Returns whether there is another value in the list.'''
-        return self.index < len(self.cl)
+        if self.cl._get_node(self.index) is not None:
+            return True
+        else:
+            return False
 
     def next(self):
         '''Returns the next value, and increments the iterator by one value.'''
-        self.index += 1
-        
+        if self.has_next:
+            if self.index < self.cl.size:
+                val = self.cl._get_node(self.index).value
+                self.index += 1
+                print(val)
+                return val
+            else:
+                val = self.cl._get_node(0).value
+                print(val)
+                self.index = 1
+                return val

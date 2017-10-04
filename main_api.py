@@ -18,9 +18,12 @@ from queue_api import Queue
 # cl = CircularLinkedList()
 #
 # cl.add('a')
-
+#
 # cl.add('b')
 # cl.add('c')
+#
+# cl.debug_cycle(-5)
+
 #
 # test = cl._get_node(2).next
 #
@@ -79,40 +82,7 @@ from queue_api import Queue
 # q.debug_print()
 
 
-#
-#
-# def call(val):
-#     dl_callahead.add(val)
-#
-#
-# call('Heyward')
-# dl_waiting.debug_print()
-# call('Baggins')
-# dl_waiting.debug_print()
-# call('Goldworthy')
-# dl_waiting.debug_print()
-#
-#
-# arrive('Bugler')
-# dl_callahead.debug_print()
-# arrive('Gamgee')
-# dl_callahead.debug_print()
-# arrive('Hlothran')
-# dl_callahead.debug_print()
-# arrive('Heyward')
-# dl_callahead.debug_print()
-# arrive('Proudfoot')
-# dl_callahead.debug_print()
-# arrive('Took')
-# dl_callahead.debug_print()
-# arrive('Smallburrow')
-# dl_callahead.debug_print()
-# arrive('Sackville')
-# dl_callahead.debug_print()
-# arrive('Mugwort')
-# dl_callahead.debug_print()
-# arrive('Goldworthy')
-# dl_callahead.debug_print()
+
 
 
 
@@ -174,7 +144,7 @@ class Processor(object):
         self.songs.debug_print()
 
     def cmd_song(self, *args):
-        # write logic here
+        self.songs_iter.next()
         pass
 
 # NEED TO FIX
