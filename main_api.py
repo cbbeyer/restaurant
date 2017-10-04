@@ -4,101 +4,7 @@ from circularlist_api import CircularLinkedList, CircularLinkedListIterator
 from doublylinkedlist_api import DoublyLinkedList
 from stack_api import Stack
 from queue_api import Queue
-
-
-# ll = LinkedList()
-# ll.add('a')
-# ll.add('b')
-# ll.add('c')
-# try:
-#     ll.get(5)
-# except Exception as e:
-#     print('Error: {}'.format(e))
-#
-# cl = CircularLinkedList()
-#
-# cl.add('a')
-#
-# cl.add('b')
-# cl.add('c')
-#
-# cl.debug_cycle(-5)
-
-#
-# test = cl._get_node(2).next
-#
-# print(test)
-# try:
-#     cl.insert(5, 'd')
-# except Exception as e:
-#     print('Error: {}'.format(e))
-
-# cl.get(3)
-# test = cl._get_node(3).next
-
-# cl.swap(1,2)
-#
-# cl.debug_print()
-
-# dl = DoublyLinkedList()
-#
-# dl.add('a')
-# dl.add('b')
-# dl.add('c')
-#
-# dl.insert(2, 'h')
-#
-# print(dl._get_node(3).prev)
-# dl.debug_print()
-#
-# dl.delete(1)
-#
-# print(dl._get_node(2).prev)
-# dl.debug_print()
-
-# st = Stack()
-#
-# st.push('a')
-# st.debug_print()
-# st.push('b')
-# st.debug_print()
-# st.push('c')
-# st.debug_print()
-#
-# st.pop()
-# st.debug_print()
-
-# q = Queue()
-#
-# q.enqueue('a')
-# q.enqueue('b')
-# q.enqueue('c')
-# q.dequeue()
-# q.debug_print()
-# q.dequeue()
-# q.debug_print()
-# q.dequeue()
-#
-# q.debug_print()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import sys
 
 
 class Processor(object):
@@ -147,7 +53,6 @@ class Processor(object):
         self.songs_iter.next()
         pass
 
-# NEED TO FIX
     def cmd_appetizer(self, *args):
         if self.appetizers.linked_list.size is not 0:
             app = self.appetizers.linked_list._get_node(0)
@@ -174,6 +79,7 @@ class Processor(object):
                 self.waiting.insert((self.waiting.size-4), args[0])
                 self.callahead.delete(self.callahead.get_index(args[0]))
             else:
+                # self.prev probs not being added
                 self.waiting.insert(0, args[0])
                 self.callahead.delete(self.callahead.get_index(args[0]))
         else:
@@ -195,7 +101,13 @@ class Processor(object):
 #######################
 ###   Main loop
 
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-with open('example_data.csv', newline='') as f:
+orig_stdout = sys.stdout
+f = open('output.txt', 'w')
+sys.stdout = f
+
+with open('data.csv', newline='') as f:
     processor = Processor()
     processor.run(f)
+
+sys.stdout = orig_stdout
+f.close()

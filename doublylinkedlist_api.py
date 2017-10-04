@@ -32,13 +32,6 @@ class DoublyLinkedList(object):
         else:
             last_node = None
 
-        # counter = 0
-        # if restrict:
-        #     while last_node != None or counter < 3:
-        #         backwards.append(str(last_node.value))
-        #         last_node = last_node.prev
-        #         counter += 1
-        # else:
         while last_node != None:
             backwards.append(str(last_node.value))
             last_node = last_node.prev
@@ -77,6 +70,7 @@ class DoublyLinkedList(object):
                 temp_val = self.head
                 self.head = Node(item)
                 self.head.next = temp_val
+                temp_val.prev = self.head
                 self.size += 1
 
             else:
